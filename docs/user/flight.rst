@@ -1,13 +1,15 @@
-.. _flightusage:
+.. _flight-usage:
 
 Flight Class Usage
 ==================
 
-The Flight class imports the Rocket and Environment and then creates the flight simulation.
+The Flight class receives ``Rocket`` and ``Environment`` instances and then
+creates the flight simulation. Note that the Rocket and the Environment are
+required beforehand.
 
-Note that the Rocket and Environment are required beforehand.
+Procedure
+---------
 
-The basic procedure is as follows:
 Defining a Rocket in RocketPy is simple and requires a few steps:
 
 1. Define Flight object with:
@@ -24,15 +26,15 @@ Defining a Rocket in RocketPy is simple and requires a few steps:
 
 2. See results.
 
-1. Basic example
-----------------
+Basic example
+-------------
 
 Let's create a simple simulation:
 
 We will define a simple Rocket and Environment for the example as these are 
 required on the Flight class, so make sure you have defined yours beforehand.
 
-Let's start by importing all librabries we will need
+Let's start by importing the classes we will need:
 
 .. jupyter-execute::
 
@@ -41,10 +43,9 @@ Let's start by importing all librabries we will need
     import numpy as np
 
 .. jupyter-execute::
+    :hide-code:
     
-    from rocketpy import Rocket
-
-    callisto = Rocket(
+    my_rocket = Rocket(
         radius=127 / 2000,
         mass=14.426,
         inertia=(6.321, 6.321, 0.034),
@@ -53,13 +54,6 @@ Let's start by importing all librabries we will need
         center_of_mass_without_motor=0,
         coordinate_system_orientation="tail_to_nose",
     )
-.. seealso::
-    For more information on the :class:`rocketpy.Rocket` class initialization, see 
-    :class:`rocketpy.Rocket.__init__` section.
-
-.. jupyter-execute::
-
-    from rocketpy import Environment
 
     my_env = Environment(
         latitude=32.990254, 
@@ -68,47 +62,47 @@ Let's start by importing all librabries we will need
     )
 
 .. seealso::
-    For more information on the :class:`rocketpy.Environment` class initialization, see 
-    :class:`rocketpy.Environment.__init__` section.
 
-Now, finally the flight simulation is as simple as this: 
+    For more information on the :class:`rocketpy.Rocket` class initialization,
+    see \ :meth:`rocketpy.Rocket.__init__` method documentation.
+
+.. seealso::
+
+    For more information on the :class:`rocketpy.Environment` class initialization, \
+    see :meth:`rocketpy.Environment.__init__` section.
+
+Now, finally the flight simulation is as simple as following: 
 
 .. jupyter-execute::
 
-    from rocketpy import Flight
-
     my_flight = Flight(
-        rocket=callisto,
-        environment=my_env,
-        inclination= 80,   
-        heading= 90,       
-        rail_length= 5.6,  
+        rocket=my_rocket,   # Rocket object
+        environment=my_env, # Environment object
+        inclination= 80,    # Inclination in degrees
+        heading= 90,        # Heading in degrees  
+        rail_length= 5.6,   # Rail length in meters
     )
 
-That's enough to create a simulation.
+That's enough to create a simulation already!
 
 
-2. Advanced settings
---------------------
+Advanced settings
+-----------------
 
 In this section we dive into the details and possibilities available when 
 setting up your simulation.
-First, let's see the complete explicity function. 
+First, let's see the complete explicit function. 
 
 .. note::
-    The new values presented here are all optional. It's not necessary to explicit
-    determinate them, but can be changed to fine tune your simulation for your needs. 
 
+    The new values presented here are all optional. It's not necessary to explicit \
+    determinate them, but can be changed to fine tune your simulation for your needs. 
 
 
 .. jupyter-execute::
 
-    from rocketpy import Flight
-    
-    import numpy as np
-
-    my_flight = Flight(
-        rocket=callisto,
+    my_flight2 = Flight(
+        rocket=my_rocket,
         environment=my_env,
         inclination= 80,   
         heading= 90,       
@@ -130,6 +124,13 @@ I know it's a lot, but don't abort the mission just yet! Let's see what each
 part means.
 
 The first itens were explained before, so let's see the new ones.
+
+.. tip::
+
+    Setting the ``equations_of_motion`` argument to ``solid_propulsion`` will \
+    optimize the simulation for solid propulsion rockets. This will make the \
+    simulation run twice as faster as the standard equations of motion. However, \
+    it will only work for solid propulsion rockets.
 
 Entries
 ~~~~~~~
@@ -184,7 +185,8 @@ the trajectory will be simulated. By default, it's set to 600 seconds.
     ]
 
 .. seealso:: 
-    Colocar referência ao scypy
+    
+    TODO: Adds scipy docs ref
 
 - ``time_overshoot`` - (boolean) If True, decouples ODE time step from parachute trigger functions sampling rate. The time steps can overshoot the necessary trigger function evaluation points and then interpolation is used to calculate them and feed the triggers. Can greatly improve run time in some cases. Default is True.
 
@@ -197,11 +199,12 @@ the trajectory will be simulated. By default, it's set to 600 seconds.
 only works for solid propulsion rockets, but are optimized for this scenario. 
 
 
-2. Results
-----------
+Visualizing Results
+-------------------
 
-The first and most direct way of getting the results is through the method
-all_info from the Flight class. For example:
+The first and most direct way of getting the results is through the
+:meth:`rocketpy.Flight.all_info` method.
+For example:
 
 .. code-block:: python
 
@@ -209,18 +212,18 @@ all_info from the Flight class. For example:
 
 
 But we know that sometimes you just need one of these results or even want to 
-make a personalized results page for your use. 
+make a personalized result plot for your specific use. 
 
-To help you with that, we will dive into each one of the Results option and show 
-you how you can get any of this data individually. 
+To help you with that, we will dive into each one of the results option and show 
+you how you can get any of those data individually. 
 
 Custom Results
 ~~~~~~~~~~~~~~
 
-Modelo da próx parte: 
-    
-- ``resultado_1`` - (descrição do resultado)
+...
 
-.. code-block:: python
+Going further
+-------------
 
-    my_flight.resultado1() 
+RocketPy allows for ...
+
