@@ -43,6 +43,7 @@ Attention: The newest changes should be on top -->
 
 ### Fixed
 
+- BUG: Zero Mass Flow Rate in Liquid Motors breaks Exhaust Velocity [#677](https://github.com/RocketPy-Team/RocketPy/pull/677)
 - BUG: Pressure ISA Extrapolation as "linear" [#675](https://github.com/RocketPy-Team/RocketPy/pull/675)
 - BUG: fix the Frequency Response plot of Flight class [#653](https://github.com/RocketPy-Team/RocketPy/pull/653)
 
