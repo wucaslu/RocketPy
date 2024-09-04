@@ -9,6 +9,7 @@ from rocketpy.rocket.aero_surface import (
     RailButtons,
     Tail,
     TrapezoidalFins,
+    AirBrakes,
 )
 
 from .stochastic_model import StochasticModel
