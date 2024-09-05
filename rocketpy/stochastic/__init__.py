@@ -12,6 +12,9 @@ from .stochastic_aero_surfaces import (
     StochasticTail,
     StochasticTrapezoidalFins,
 )
+from rocketpy.rocket.aero_surface import (
+    AirBrakes,
+)
 from .stochastic_environment import StochasticEnvironment
 from .stochastic_flight import StochasticFlight
 from .stochastic_generic_motor import StochasticGenericMotor
