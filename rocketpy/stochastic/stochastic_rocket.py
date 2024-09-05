@@ -3,6 +3,7 @@
 import warnings
 from random import choice
 
+from rocketpy.control.controller import _Controller
 from rocketpy.motors.motor import EmptyMotor, GenericMotor, Motor
 from rocketpy.motors.solid_motor import SolidMotor
 from rocketpy.rocket.aero_surface import (
@@ -229,6 +230,25 @@ class StochasticRocket(StochasticModel):
         self.aerodynamic_surfaces.add(
             surfaces, self._validate_position(surfaces, positions)
         )
+        
+    def _add_controllers(self, controllers):
+        """Adds a controller to the rocket.
+
+        Parameters
+        ----------
+        controllers : list of Controller objects
+            List of controllers to be added to the rocket. If a single
+            Controller object is passed, outside of a list, a try/except block
+            will be used to try to append the controller to the list.
+
+        Returns
+        -------
+        None
+        """
+        try:
+            self._controllers.extend(controllers)
+        except TypeError:
+            self._controllers.append(controllers)
 
     def add_nose(self, nose, position=None):
         """Adds a stochastic nose cone to the stochastic rocket.
