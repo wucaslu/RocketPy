@@ -167,7 +167,6 @@ class StochasticRocket(StochasticModel):
         self.rail_buttons = Components()
         self.parachutes = []
         
-        self.area = np.pi * self.radius**2
         # Controllers data initialization
         self._controllers = []
 
@@ -457,7 +456,7 @@ class StochasticRocket(StochasticModel):
         controller : Controller
             Controller object created.
         """
-        reference_area = reference_area if reference_area is not None else self.area
+        reference_area = reference_area if reference_area is not None else (np.pi * self.radius**2)
         air_brakes = AirBrakes(
             drag_coefficient_curve=drag_coefficient_curve,
             reference_area=reference_area,
