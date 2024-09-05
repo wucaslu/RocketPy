@@ -167,6 +167,7 @@ class StochasticRocket(StochasticModel):
         self.rail_buttons = Components()
         self.parachutes = []
         
+        self.area = np.pi * self.radius**2
         # Controllers data initialization
         self._controllers = []
 
