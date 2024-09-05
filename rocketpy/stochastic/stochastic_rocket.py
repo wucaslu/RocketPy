@@ -6,6 +6,7 @@ from random import choice
 from rocketpy.motors.motor import EmptyMotor, GenericMotor, Motor
 from rocketpy.motors.solid_motor import SolidMotor
 from rocketpy.rocket.aero_surface import (
+    AirBrakes,
     EllipticalFins,
     NoseCone,
     RailButtons,
@@ -164,6 +165,12 @@ class StochasticRocket(StochasticModel):
         self.aerodynamic_surfaces = Components()
         self.rail_buttons = Components()
         self.parachutes = []
+        
+        # Controllers data initialization
+        self._controllers = []
+
+        # AirBrakes data initialization
+        self.air_brakes = []
 
     def add_motor(self, motor, position=None):
         """Adds a stochastic motor to the stochastic rocket. If a motor is
