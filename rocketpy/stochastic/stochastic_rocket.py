@@ -466,18 +466,9 @@ class StochasticRocket(StochasticModel):
             deployment_level=0,
             name=name,
         )
-        _controller = _Controller(
-            interactive_objects=air_brakes,
-            controller_function=controller_function,
-            sampling_rate=sampling_rate,
-            initial_observed_variables=initial_observed_variables,
-            name=controller_name,
-        )
+
         self.air_brakes.append(air_brakes)
-        self._add_controllers(_controller)
         if return_controller:
-            return air_brakes, _controller
-        else:
             return air_brakes
 
     def set_rail_buttons(
