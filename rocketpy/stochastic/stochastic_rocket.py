@@ -1,6 +1,7 @@
 """Defines the StochasticRocket class."""
 
 import warnings
+import numpy as np
 from random import choice
 
 from rocketpy.control.controller import _Controller
